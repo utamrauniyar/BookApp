@@ -19,9 +19,11 @@ public class RegisterServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-//		get PrintWriter
+
+		/* get PrintWriter */
 		PrintWriter pw = res.getWriter();
-//		set content type
+
+		/* set content type */
 		res.setContentType("text/html");
 
 		/* Get the Book Info */
@@ -29,7 +31,7 @@ public class RegisterServlet extends HttpServlet {
 		String bookEdition = req.getParameter("bookedition");
 		float bookPrice = Float.parseFloat(req.getParameter("bookprice"));
 
-		/* Load jdbc driver */
+		/* Register jdbc driver */
 		String jdbcDriver = "com.mysql.cj.jdbc.Driver";
 		try {
 			Class.forName(jdbcDriver);
@@ -37,6 +39,7 @@ public class RegisterServlet extends HttpServlet {
 			System.out.println("Driver is not loaded");
 			e.printStackTrace();
 		}
+
 		/* Establish the connection */
 		String dbUrl = "jdbc:mysql:///book";
 		String dbUname = "root";
@@ -67,7 +70,7 @@ public class RegisterServlet extends HttpServlet {
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		doGet(req, res);
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doGet(req, resp);
 	}
 }
